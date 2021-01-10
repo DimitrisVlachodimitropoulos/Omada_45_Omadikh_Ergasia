@@ -199,7 +199,7 @@ def select_statements(c):
         if opt == 'end':
             loop = False
 
-#Τυπώνει        
+        
 def select_allkomvos(c, id):
     if id.isdigit(): id = int(id)
     try:
@@ -207,8 +207,12 @@ def select_allkomvos(c, id):
         sql_allforkomvos = """Select * from Komvos WHERE Id_komvou = %s"""
         cursor.execute(sql_allforkomvos, (id,))
         result = cursor.fetchall()
-        for x in result:
-            print(x)
+        for row in result:
+            print("Id_komvou = ", row[0])
+            print("Topothesia = ", row[1])
+            print("Katastash_leit = ", row[2])
+            print("Enarks_leit = ", row[3])
+            print("Lhksh_leit = ", row[4])
         cursor.close()
     except Error as e:
         print("Failed to select from Komvo", e)           
@@ -221,6 +225,7 @@ def select_komvosnotworking(c):
                            WHERE Katastash_leit = 0 """  
         cursor.execute(sql_notkomvos)
         result = cursor.fetchall()
+        print("\nPrinting all non-working nodes")
         for x in result:
             print(x)
         cursor.close()       
@@ -260,6 +265,7 @@ def select_ameses_sundeseis(c, id):
                             WHERE ((Id_komvou1 =%s) OR (Id_komvou2 =%s))"""
         cursor.execute(sql_ameshsund, (id,id,id,))
         result = cursor.fetchall()
+        print("\nPrinting all neighbouring nodes")
         for x in result:
             print(x)
         cursor.close()
@@ -391,8 +397,13 @@ def sundeseis_asunhthistes(c):
         cursor.execute(sql_state)
         myselect = cursor.fetchall()
 
-        for x in myselect:
-            print (x)
+        for row in myselect:
+            print("Id_Sundeshs = ", row[0])
+            print("Id_Komvou_1 = ", row[1])
+            print("Id_Komvou_2 = ", row[2])
+            print("Volt_Komvou_1 = ", row[3])
+            print("Volt_Komvou_2  = ", row[4])
+            print("Hmerominia  = ", row[5])
         
         cursor.close()
 
@@ -411,8 +422,10 @@ def komvoi_upoleit(c):
         cursor.execute(sql_komvupol)
         myselect = cursor.fetchall()
 
-        for x in myselect:
-            print (x)
+        for row in myselect:
+            print("Id_Komvou = ", row[0])
+            print("Hmerominia = ", row[1])
+            print("Mesh_timh_MWatt_stis_sundeseis_tou = ", row[2])
         
         cursor.close()
 
