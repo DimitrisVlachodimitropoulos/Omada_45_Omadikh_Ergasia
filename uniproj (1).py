@@ -199,7 +199,7 @@ def select_statements(c):
         if opt == 'end':
             loop = False
 
-        
+#Τυπώνει        
 def select_allkomvos(c, id):
     if id.isdigit(): id = int(id)
     try:
